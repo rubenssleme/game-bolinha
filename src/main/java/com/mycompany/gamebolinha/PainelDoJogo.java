@@ -10,8 +10,8 @@ import javax.swing.JPanel;
 
 public class PainelDoJogo extends JPanel implements Runnable, KeyListener{
 
-	//Campos de vari�veis
-	public static int LARGURA = 500, ALTURA = 500; // static porque essa vari�vel poder� ser 
+	//Campos de variaveis
+	public static int LARGURA = 500, ALTURA = 500; // static porque essa variavel podera ser 
 	private Thread thread;						  // usada em todas as classes.
 	private boolean Rodando,hordaInicio;
 	private BufferedImage imagem;
@@ -34,10 +34,10 @@ public class PainelDoJogo extends JPanel implements Runnable, KeyListener{
 	public PainelDoJogo(){
 		super();
 		setPreferredSize(new Dimension(LARGURA, ALTURA));
-		setFocusable(true); //faz com que seja poss�vel o foco da tela
+		setFocusable(true); //faz com que seja possavel o foco da tela
 		requestFocus();		// busca o foco
 	}
-	// Fun��es
+	// Funaaes
 	public void addNotify(){
 		super.addNotify();
 		if (thread == null){
@@ -65,10 +65,10 @@ public class PainelDoJogo extends JPanel implements Runnable, KeyListener{
 		 g = (Graphics2D) imagem.getGraphics();
 		 
 		 g.setRenderingHint(
-				 RenderingHints.KEY_ANTIALIASING,  // Anti-An�lise da tela, jogador, inimigos, etc.
+				 RenderingHints.KEY_ANTIALIASING,  // Anti-Analise da tela, jogador, inimigos, etc.
 				 RenderingHints.VALUE_ANTIALIAS_ON	);
 		 g.setRenderingHint(
-				 RenderingHints.KEY_TEXT_ANTIALIASING, // Anti-An�lise do texto
+				 RenderingHints.KEY_TEXT_ANTIALIASING, // Anti-Analise do texto
 				 RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 		 
 		 jogador = new Jogador();
@@ -89,24 +89,24 @@ public class PainelDoJogo extends JPanel implements Runnable, KeyListener{
 		 long totalTime = 0;
 		 int frameCount = 0;
 		 int maxFrameCount = 30;
-		 long targetTime = 1000 / FPS; // 1000 porque  s�o 1000 milissegundos, o que resulta em 1 segundo.
-		 								//O resultado dar� cerca de 33 milissegundos, ou seja,
-		 								// ele rodar� o loop em cada 33 milissegundos
+		 long targetTime = 1000 / FPS; // 1000 porque  sao 1000 milissegundos, o que resulta em 1 segundo.
+		 								//O resultado dara cerca de 33 milissegundos, ou seja,
+		 								// ele rodara o loop em cada 33 milissegundos
 		 
 		 //Loop do jogo	 
 		 while (Rodando){
 			 
-			 startTime = System.nanoTime(); // Fun��o do java que pega o tipo de tempo em nanosegundos
+			 startTime = System.nanoTime(); // Funaao do java que pega o tipo de tempo em nanosegundos
 			 
 			 gameRefresh();
 			 gameRender();
 			 gameDraw();
 			 
-			 URDTimeMillis = (System.nanoTime() - startTime) / 1000000; // Sempre dividido por 1 milh�o, pois queremos os milissegundos.
-			 waitTime = targetTime - URDTimeMillis; // waitTime � assim pois precisa-se de um 
+			 URDTimeMillis = (System.nanoTime() - startTime) / 1000000; // Sempre dividido por 1 milhao, pois queremos os milissegundos.
+			 waitTime = targetTime - URDTimeMillis; // waitTime a assim pois precisa-se de um 
 			 										//tempo de espera entre esses 33 milissegundos, 
-			 										//o gameRender far� seu trabalho em 20 millis aprox, 
-			 										//portanto, � necess�rio o restante do tempo como espera
+			 										//o gameRender fara seu trabalho em 20 millis aprox, 
+			 										//portanto, a necessario o restante do tempo como espera
 			 try{
 				 Thread.sleep(waitTime);
 			 }
@@ -115,7 +115,7 @@ public class PainelDoJogo extends JPanel implements Runnable, KeyListener{
 			 totalTime += System.nanoTime() - startTime;
 			 frameCount ++;
 			 if (frameCount == maxFrameCount){
-				 averageFPS = 1000.0 / ((totalTime / frameCount) / 1000000); // Sempre dividido por 1 milh�o, pois queremos os milissegundos.
+				 averageFPS = 1000.0 / ((totalTime / frameCount) / 1000000); // Sempre dividido por 1 milhao, pois queremos os milissegundos.
 				 frameCount = 0;
 				 totalTime = 0;
 			 }
@@ -137,7 +137,7 @@ public class PainelDoJogo extends JPanel implements Runnable, KeyListener{
 		 gameDraw();
 	}
 	
-	private void gameRefresh(){ //Fun��o que ser� respons�vel pelos refreshs e sua l�gica
+	private void gameRefresh(){ //Funaao que sera responsavel pelos refreshs e sua lagica
 		
 		// Nova Horda
 		if(hordaTimerInicio == 0 && inimigos.size() == 0){
@@ -145,7 +145,7 @@ public class PainelDoJogo extends JPanel implements Runnable, KeyListener{
 			hordaInicio = false;
 			hordaTimerInicio = System.nanoTime();
 		}else{
-			hordaDifTimerInicio = (System.nanoTime() - hordaTimerInicio) / 1000000; // Sempre dividido por 1 milh�o, pois queremos os milissegundos.
+			hordaDifTimerInicio = (System.nanoTime() - hordaTimerInicio) / 1000000; // Sempre dividido por 1 milhao, pois queremos os milissegundos.
 			if(hordaDifTimerInicio > hordaDelay){
 				hordaInicio = true;
 				hordaTimerInicio = 0;
@@ -183,7 +183,7 @@ public class PainelDoJogo extends JPanel implements Runnable, KeyListener{
 			}
 		}
 		
-		//Refresh da explos�o
+		//Refresh da explosao
 		for (int i = 0; i < explosoes.size(); i++){
 			boolean remove = explosoes.get(i).Refresh();
 			if(remove){
@@ -201,7 +201,7 @@ public class PainelDoJogo extends JPanel implements Runnable, KeyListener{
 			}
 		}
 		
-		// Colis�o entre tiros e inimigos
+		// Colisao entre tiros e inimigos
 		for (int i = 0; i < tiros.size(); i++){
 			Tiro t = tiros.get(i);
 			double tx = t.getX();
@@ -238,7 +238,7 @@ public class PainelDoJogo extends JPanel implements Runnable, KeyListener{
 				Inimigo in = inimigos.get(i);
 				
 				//chance de drop PowerUp
-				double rand = Math.random(); // Fun��o matem�tica que gera um n�mero aleat�rio
+				double rand = Math.random(); // Funaao matematica que gera um namero aleatario
 				if (rand < 0.005)
 					powerUps.add(new PowerUp(1, in.getX(), in.getY()));
 				else if (rand < 0.010)
@@ -260,7 +260,7 @@ public class PainelDoJogo extends JPanel implements Runnable, KeyListener{
 			}
 		}
 		
-		// colis�o inimigo-jogador
+		// colisao inimigo-jogador
 		if(!jogador.isRecover()){
 			int jx = jogador.getX();
 			int jy = jogador.getY();
@@ -279,7 +279,7 @@ public class PainelDoJogo extends JPanel implements Runnable, KeyListener{
 			}
 		}
 		
-		// Colis�o Jogador-PowerUp
+		// Colisao Jogador-PowerUp
 		int jX = jogador.getX();
 		int jY = jogador.getY();
 		int jR = jogador.getR();
@@ -374,24 +374,24 @@ public class PainelDoJogo extends JPanel implements Runnable, KeyListener{
 			}
 		}
 	}
-	private void gameRender(){ // Fun��o que ser� respons�vel pelo doublebuffering, ou seja, 
-							   //pr�-definir todos os sprites, renderiz�-los e deix�-los prontos
+	private void gameRender(){ // Funaao que sera responsavel pelo doublebuffering, ou seja, 
+							   //pra-definir todos os sprites, renderiza-los e deixa-los prontos
 		//render da tela
-		g.setColor(new Color(110,115,250)); // (new Color(,,,)) � o par�metro que se adiciona cores no padr�o RGB
+		g.setColor(new Color(110,115,250)); // (new Color(,,,)) a o parametro que se adiciona cores no padrao RGB
 		g.fillRect(0, 0, LARGURA, ALTURA);
 		g.setColor(Color.WHITE);
 		
 		//render efeito Bullet Time
 		if(bulletTimeTimer != 0){
-			g.setColor(new Color(255,255,255,64)); // o quarto elemento refere-se a transpar�ncia
+			g.setColor(new Color(255,255,255,64)); // o quarto elemento refere-se a transparancia
 			g.fillRect(0, 0, LARGURA, ALTURA);
 		}
-		//Informa��es de console
+		//Informaaaes de console
 		DecimalFormat fps = new DecimalFormat ("0");
 		g.setFont(new Font ("Lucida Console", Font.PLAIN, 13));
 		g.drawString("FPS: " + fps.format(averageFPS), 230, 10);
-		g.drawString("N� de tiros: "+ tiros.size(),230,45);
-		g.drawString("N� de inimigos:"+ inimigos.size(), 230,35);
+		g.drawString("Na de tiros: "+ tiros.size(),230,45);
+		g.drawString("Na de inimigos:"+ inimigos.size(), 230,35);
 		g.drawString("Horda: "+hordaNumero,230,55);
 		g.drawString("Coordenadas:"+jogador.getX()+","+jogador.getY(),230,20);
 		g.drawString("| Score: "+jogador.getScore(), LARGURA - 110,10);
@@ -411,7 +411,7 @@ public class PainelDoJogo extends JPanel implements Runnable, KeyListener{
 		for (int i = 0; i < powerUps.size(); i++)
 			powerUps.get(i).desenha(g);
 		
-		//render da explos�o
+		//render da explosao
 		for (int i = 0; i < explosoes.size(); i++)
 			explosoes.get(i).desenha(g);
 		
@@ -482,7 +482,7 @@ public class PainelDoJogo extends JPanel implements Runnable, KeyListener{
 		
 	}
 
-	private void gameDraw(){ // Fun��o que ser� respons�vel por desenhar na tela
+	private void gameDraw(){ // Funaao que sera responsavel por desenhar na tela
 							//aquilo que a render preparou
 		Graphics g2 = this.getGraphics();
 		g2.drawImage(imagem, 0, 0, null);
